@@ -117,8 +117,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [win64,linux64,linuxarm64]
-        variant: [gpl-shared 4.4,gpl-shared 5.1,gpl-shared 6.0]
+        target: [win64]
+        variant: [gpl-shared 5.1,gpl-shared 6.0]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
