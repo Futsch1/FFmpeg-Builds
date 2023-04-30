@@ -4,7 +4,7 @@ SCRIPT_REPO="https://git.libssh.org/projects/libssh.git"
 SCRIPT_COMMIT="c3aa0cb18225f2f9fcefd96aad327c6ffbb2d77c"
 
 ffbuild_enabled() {
-    return 0
+    return -1
 }
 
 ffbuild_dockerbuild() {
