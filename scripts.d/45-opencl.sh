@@ -1,25 +1,25 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/KhronosGroup/OpenCL-Headers.git"
-SCRIPT_COMMIT="4fdcfb0ae675f2f63a9add9552e0af62c2b4ed30"
+SCRIPT_COMMIT="c860bb551eeef9a47d56286a70cea903db3d6ed2"
 
 SCRIPT_REPO2="https://github.com/KhronosGroup/OpenCL-ICD-Loader.git"
-SCRIPT_COMMIT2="b1bce7c3c580a8345205cf65fc1a5f55ba9cdb01"
+SCRIPT_COMMIT2="861b68b290e76d08e7241608479c16431f529945"
 
 ffbuild_enabled() {
     return -1
 }
 
-ffbuild_dockerbuild() {
-    mkdir opencl && cd opencl
+ffbuild_dockerdl() {
+    default_dl headers
+    echo "git-mini-clone \"$SCRIPT_REPO2\" \"$SCRIPT_COMMIT2\" loader"
+}
 
-    git-mini-clone "$SCRIPT_REPO" "$SCRIPT_COMMIT" headers
+ffbuild_dockerbuild() {
     mkdir -p "$FFBUILD_PREFIX"/include/CL
     cp -r headers/CL/* "$FFBUILD_PREFIX"/include/CL/.
 
-    git-mini-clone "$SCRIPT_REPO2" "$SCRIPT_COMMIT2" loader
     cd loader
-
     mkdir build && cd build
 
     cmake -DCMAKE_TOOLCHAIN_FILE="$FFBUILD_CMAKE_TOOLCHAIN" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$FFBUILD_PREFIX" \

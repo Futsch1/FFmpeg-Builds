@@ -9,10 +9,11 @@ ffbuild_enabled() {
     return -1
 }
 
+ffbuild_dockerdl() {
+    echo "git clone \"$SCRIPT_REPO\" . && git checkout \"$SCRIPT_COMMIT\""
+}
+
 ffbuild_dockerbuild() {
-    git clone "$SCRIPT_REPO" xavs2
-    cd xavs2
-    git checkout "$SCRIPT_COMMIT"
     cd build/linux
 
     local myconf=(

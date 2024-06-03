@@ -1,16 +1,13 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://code.videolan.org/videolan/dav1d.git"
-SCRIPT_COMMIT="0b809a9281e0a97441728ad763779e7874209d37"
+SCRIPT_COMMIT="da2cc7817cff218b30f2c813a8a142a43f9376bd"
 
 ffbuild_enabled() {
     return -1
 }
 
 ffbuild_dockerbuild() {
-    git-mini-clone "$SCRIPT_REPO" "$SCRIPT_COMMIT" dav1d
-    cd dav1d
-
     mkdir build && cd build
 
     local myconf=(

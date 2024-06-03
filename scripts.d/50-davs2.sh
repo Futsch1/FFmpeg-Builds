@@ -9,10 +9,12 @@ ffbuild_enabled() {
     return -1
 }
 
+ffbuild_dockerdl() {
+    default_dl .
+    echo "git fetch --unshallow"
+}
+
 ffbuild_dockerbuild() {
-    git clone "$SCRIPT_REPO" davs2
-    cd davs2
-    git checkout "$SCRIPT_COMMIT"
     cd build/linux
 
     local myconf=(

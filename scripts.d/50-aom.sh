@@ -1,20 +1,17 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://aomedia.googlesource.com/aom"
-SCRIPT_COMMIT="d6b8177c9e7fe0fa381afb6ed3946c492fc4d6e9"
+SCRIPT_COMMIT="4e1a5d4d08a216d71ecee10c25736abb2ffc2cdc"
 
 ffbuild_enabled() {
     return -1
 }
 
 ffbuild_dockerstage() {
-    to_df "RUN --mount=src=${SELF},dst=/stage.sh --mount=src=patches/aom,dst=/patches run_stage /stage.sh"
+    to_df "RUN --mount=src=${SELF},dst=/stage.sh --mount=src=${SELFCACHE},dst=/cache.tar.xz --mount=src=patches/aom,dst=/patches run_stage /stage.sh"
 }
 
 ffbuild_dockerbuild() {
-    git-mini-clone "$SCRIPT_REPO" "$SCRIPT_COMMIT" aom
-    cd aom
-
     for patch in /patches/*.patch; do
         echo "Applying $patch"
         git am < "$patch"

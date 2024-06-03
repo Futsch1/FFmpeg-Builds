@@ -8,11 +8,11 @@ ffbuild_enabled() {
     return -1
 }
 
-ffbuild_dockerbuild() {
-    git clone "$SCRIPT_REPO" uavs3d
-    cd uavs3d
-    git checkout "$SCRIPT_COMMIT"
+ffbuild_dockerdl() {
+    echo "git clone \"$SCRIPT_REPO\" . && git checkout \"$SCRIPT_COMMIT\""
+}
 
+ffbuild_dockerbuild() {
     mkdir build/linux
     cd build/linux
 
